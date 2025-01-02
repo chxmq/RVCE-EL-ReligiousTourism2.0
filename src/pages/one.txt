@@ -1,0 +1,77 @@
+const destinations = [
+    {
+      name: "Tirupati Balaji Temple",
+      position: [13.6784, 79.3527],
+      description: "One of the world's richest temples, dedicated to Lord Venkateswara. Known for its unique architectural style and massive pilgrim crowds. The temple processes over 60,000 devotees daily. Famous for laddu prasadam and head-tonsuring ceremony. The main deity is believed to be self-manifested."
+    },
+    {
+      name: "Golden Temple",
+      position: [31.6200, 74.8765],
+      description: "The holiest Sikh shrine, featuring a stunning gold-plated temple surrounded by a sacred lake. Famous for its community kitchen (langar) serving 100,000+ people daily. The temple's upper floors are covered with 750kg of gold. Houses the Guru Granth Sahib, the holy scripture of Sikhs."
+    },
+    {
+      name: "Vaishno Devi Temple",
+      position: [33.0306, 74.9496],
+      description: "Located at 5,200 feet in the Trikuta Mountains. Pilgrims trek 12km uphill to reach this sacred cave shrine. The temple sees about 8 million visitors annually. Natural rock formations inside the cave represent three main manifestations of the Goddess: Mahakali, Mahalakshmi, and Mahasaraswati."
+    },
+    {
+      name: "Meenakshi Temple",
+      position: [9.9195, 78.1196],
+      description: "A 2500-year-old temple with 14 magnificent gateway towers. Dedicated to Goddess Meenakshi, an avatar of Parvati. Features 33,000 sculptures and the famous Hall of Thousand Pillars. The temple tank, Porthamarai Kulam, is believed to have been judged by Lord Shiva himself."
+    },
+    {
+      name: "Badrinath Temple",
+      position: [30.7433, 79.4938],
+      description: "One of the Char Dham sites, situated at 10,170 feet in the Himalayas. Dedicated to Lord Vishnu. The temple architecture shows Buddhist influence. Hot springs nearby are believed to have medicinal properties. Closes during winter due to extreme weather conditions."
+    },
+    {
+      name: "Amarnath Cave",
+      position: [34.2156, 75.5012],
+      description: "Famous for its natural ice lingam formation. Located at 12,756 feet, pilgrims trek through challenging terrain. The ice lingam waxes and wanes with the moon phases. According to legend, this is where Shiva explained the secret of immortality to Parvati."
+    },
+    {
+      name: "Jagannath Temple",
+      position: [19.8050, 85.8179],
+      description: "Home to Lord Jagannath, famous for its annual Rath Yatra. The temple kitchen can cook for 100,000 people daily using traditional methods. No birds or planes fly above the temple. The flag atop the temple mysteriously flows opposite to the wind direction."
+    },
+    {
+      name: "Kashi Vishwanath",
+      position: [25.3109, 83.0107],
+      description: "One of the twelve Jyotirlingas in Varanasi. Temple towers plated with 800kg gold. The current structure was built in 1780 by Ahilyabai Holkar. Hosts the famous Ganga Aarti every evening. Recently renovated with a massive corridor connecting it to the Ganges ghats."
+    },
+    {
+      name: "Kedarnath Temple",
+      position: [30.7346, 79.0669],
+      description: "Highest Jyotirlinga at 11,755 feet. Built in 8th century, survived 2013 floods. The temple architecture is an engineering marvel, built with interlocking stones without mortar. Believed to have been built by the Pandavas. Opens only six months a year due to weather."
+    },
+    {
+      name: "Somnath Temple",
+      position: [20.8880, 70.4010],
+      description: "First among twelve Jyotirlingas. Rebuilt several times after invasions. The current structure was completed in 1951. The temple's Shikhar is 15 stories high. Features a continuous wave sound effect due to unique coastal location."
+    },
+    {
+      name: "Shirdi Sai Baba Temple",
+      position: [19.7645, 74.4762],
+      description: "Shrine of Sai Baba with 'Prasadalaya' serving free meals to 40,000+ daily. Houses the original fire (Dhuni) maintained since Sai Baba's time. The Samadhi Mandir is built with stones from Vrindavan. Celebrates three main festivals: Ramnavami, Guru Purnima, and Vijaya Dashami."
+    },
+    {
+      name: "Ajmer Sharif Dargah",
+      position: [26.4519, 74.6289],
+      description: "Sufi shrine of Khwaja Moinuddin Chisti. Houses two massive cauldrons for cooking sacred food. The dargah's gate was built by Nizam of Hyderabad using 200kg silver. Famous for its Qawwali performances and annual Urs celebration."
+    },
+    {
+      name: "Dakshineswar Kali Temple",
+      position: [22.6575, 88.3674],
+      description: "Built in 1855 by Rani Rashmoni. Associated with Sri Ramakrishna Paramahamsa's spiritual practices. Features 12 identical Shiva temples along the riverbank. The temple follows unique tantric traditions and rituals."
+    },
+    {
+      name: "Sabarimala Temple",
+      position: [9.4323, 77.0824],
+      description: "Dedicated to Lord Ayyappa, situated in Western Ghats. Requires 41-day penance before pilgrimage. The temple opens only during specific periods. Famous for its 18 holy steps and unique pilgrimage practices. Surrounded by tiger reserve."
+    },
+    {
+      name: "Hemkund Sahib",
+      position: [30.7016, 79.6152],
+      description: "Highest Gurudwara in the world at 15,200 feet. Shaped like a star-fortress, surrounded by seven peaks. Mentioned in Dasam Granth by Guru Govind Singh. Opens only 4-5 months due to snow. Requires challenging 13km trek."
+    }
+  ];

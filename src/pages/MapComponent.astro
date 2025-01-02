@@ -1,0 +1,368 @@
+---
+// MapComponent.astro
+---
+
+<div class="flex h-screen bg-gray-900">
+  <div id="map" class="w-3/5 h-full"></div>
+  <div id="details" class="w-2/5 h-full bg-gray-900 p-6 overflow-y-auto hidden">
+    <h2 id="details-title" class="text-2xl font-bold text-gray-100 mb-4"></h2>
+    <div id="details-content" class="space-y-6"></div>
+  </div>
+</div>
+
+<script>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
+
+  const destinations = [
+  {
+    name: "Tirupati Balaji Temple",
+    position: [13.6784, 79.3527],
+    details: {
+      description: "One of the world's richest and most visited temples, dedicated to Lord Venkateswara, an incarnation of Lord Vishnu. It is situated on the Tirumala hills in Andhra Pradesh, India.",
+      history: "The temple has ancient origins dating back to the 3rd century and has been a significant religious site through the Pallava, Chola, Pandya, and Vijayanagara empires. It has a rich history of royal patronage and spiritual significance.",
+      architecture: "The temple is built in the Dravidian style with intricate carvings, gopurams (tower gateways), and a gold-plated dome known as 'Ananda Nilayam.' The sanctum sanctorum houses the main deity adorned with precious jewels and ornaments.",
+      timings: "The temple operates from 3:00 AM to 12:00 PM and again from 3:00 PM to 9:00 PM, offering multiple sevas (services) throughout the day.",
+      bestTimeToVisit: "October to March, as the weather is pleasant, and many festivals like Brahmotsavam occur during this period.",
+      nearbyAttractions: "Nearby attractions include Akasa Ganga (a sacred waterfall), Papavinasam (a holy water stream believed to cleanse sins), Srivari Padalu, and the natural rock formation of Silathoranam.",
+      howToReach: "Nearest airport: Tirupati (14km). Nearest railway station: Tirupati (10km). The temple is also accessible via a well-maintained ghat road and pedestrian pathways for pilgrims.",
+      accommodation: "Multiple guest houses and hotels are available, including TTD (Tirumala Tirupati Devasthanams) accommodations that cater specifically to pilgrims.",
+      rules: "No photography or videography is allowed inside the temple premises. Devotees are required to dress modestly, and footwear is not permitted inside the temple.",
+      specialFeatures: "The temple is renowned for its Laddu prasadam, the sacred offering distributed to devotees. It also hosts a unique head tonsuring ceremony as a sign of devotion and submission. Other special rituals include Suprabhatam, Thomala Seva, and Archana Seva.",
+      festivals: "Major festivals include Brahmotsavam, Vaikuntha Ekadashi, Rathasapthami, and Padmavathi Parinayam, drawing millions of devotees each year.",
+      spiritualSignificance: "It is believed that a visit to this temple can absolve one of sins and bring prosperity. The temple receives donations from devotees worldwide, making it one of the wealthiest religious institutions globally.",
+      accessibility: "The temple provides facilities for senior citizens, differently-abled individuals, and children, including free darshan and battery-operated vehicles.",
+      specialDarshan: "Sarva Darshan (free darshan), Special Entry Darshan (with a nominal fee), and Seva Darshan (exclusive services) are available for devotees.",
+      culinaryOfferings: "Apart from Laddu prasadam, other prasadam options like Pulihora (tamarind rice) and Pongal are also served."
+    },
+    image: "/map/Tiru.jpg"
+  },
+  {
+    name: "Badrinath Temple",
+    position: [30.7433, 79.4938],
+    details: {
+      description: "One of the holiest temples in India, dedicated to Lord Vishnu, located in the Chamoli district of Uttarakhand. It is part of the Char Dham and Chota Char Dham pilgrimages.",
+      history: "Badrinath Temple is believed to have been established by Adi Shankaracharya in the 8th century. The temple has mythological significance and is mentioned in ancient scriptures like the Mahabharata and Puranas.",
+      architecture: "Built in the traditional North Indian style with a colorful facade, the temple features a conical-shaped roof covered with a gold-plated dome. The sanctum sanctorum houses a 1-meter-tall black stone idol of Lord Vishnu in a meditative pose.",
+      timings: "The temple is open from 4:30 AM to 1:00 PM and 4:00 PM to 9:00 PM. It remains closed during winter due to heavy snowfall and reopens in April/May.",
+      bestTimeToVisit: "May to October, avoiding the monsoon season (July-August) when landslides are common.",
+      nearbyAttractions: "Nearby attractions include Tapt Kund (a hot water spring), Neelkanth Peak, Vasudhara Falls, Mana Village (the last Indian village before the Tibetan border), and the confluence of the Alaknanda and Saraswati rivers at Keshav Prayag.",
+      howToReach: "Nearest airport: Jolly Grant Airport, Dehradun (311 km). Nearest railway station: Rishikesh (293 km). Buses and taxis are available to reach the temple, and the last stretch is accessible on foot.",
+      accommodation: "Pilgrims can find accommodations in dharamshalas, guest houses, and hotels in Badrinath town. GMVN (Garhwal Mandal Vikas Nigam) also provides budget-friendly options.",
+      rules: "Photography is not allowed inside the sanctum. Devotees should maintain silence and wear modest attire. Footwear is not permitted inside the temple premises.",
+      specialFeatures: "The temple is famous for its spiritual significance and the sacred Tapt Kund, where devotees take a holy dip before entering the temple. The Badrinath idol is believed to be self-manifested (Swayambhu).",
+      festivals: "Key festivals include Mata Murti Ka Mela, Badri Kedar Utsav, and Janmashtami. These festivals are celebrated with great devotion and attract large crowds.",
+      spiritualSignificance: "It is believed that visiting Badrinath and taking the blessings of Lord Vishnu can help achieve salvation (moksha). The temple is part of the Char Dham Yatra, a journey of spiritual importance for Hindus.",
+      accessibility: "The temple provides assistance for senior citizens and differently-abled individuals, including palkis (palanquins) and pony rides for those unable to walk the last stretch.",
+      specialDarshan: "Devotees can participate in various rituals like Maha Abhishek, Geeta Path, and Vishnu Sahasranamam. Special poojas and darshan are available upon prior booking.",
+      culinaryOfferings: "The temple offers prasadam in the form of cooked rice and pulses, prepared in the sacred temple kitchen using ingredients donated by devotees."
+    },
+    image: "/map/badrinath.jpg"
+  },
+  {
+    "name": "Amarnath Cave",
+    "position": [34.2156, 75.5012],
+    "details": {
+      "description": "One of the holiest shrines in Hinduism, dedicated to Lord Shiva. It is renowned for its natural ice lingam that forms annually.",
+      "history": "The cave is believed to have been discovered by a shepherd in the 15th century. According to legend, Lord Shiva revealed the secrets of immortality to Goddess Parvati here.",
+      "architecture": "A natural cave situated at an altitude of 12,756 feet, surrounded by rugged Himalayan peaks. The ice lingam forms naturally due to freezing water droplets.",
+      "timings": "Accessible only during the annual pilgrimage season from July to August. The cave remains closed for the rest of the year due to heavy snowfall.",
+      "bestTimeToVisit": "July and August during the Shravani Mela, coinciding with the yatra season.",
+      "nearbyAttractions": "Nearby attractions include Baltal, Pahalgam, Sheshnag Lake, and Panchtarni. These spots are part of the trekking route to the cave.",
+      "howToReach": "Nearest airport: Srinagar Airport (140 km). Nearest railway station: Jammu Tawi (300 km). Helicopter services are available from Baltal and Pahalgam.",
+      "accommodation": "Pilgrims can find accommodations in tents, base camps, and lodges at Baltal and Pahalgam.",
+      "rules": "Photography is not allowed inside the cave. Pilgrims should follow a strict dress code and respect the sanctity of the site.",
+      "specialFeatures": "The natural ice lingam waxes and wanes with the lunar cycle, symbolizing the celestial connection of the shrine.",
+      "festivals": "The annual Shravani Mela and yatra season attract thousands of devotees, making it a spiritually enriching experience.",
+      "spiritualSignificance": "It is believed that a visit to the cave absolves devotees of sins and grants blessings of immortality from Lord Shiva.",
+      "accessibility": "The trek to the cave is challenging, but facilities like palkis and pony rides are available for those needing assistance.",
+      "specialDarshan": "Special darshan tickets and helicopter services can be booked in advance for convenience.",
+      "culinaryOfferings": "Devotees are served simple meals at langars (community kitchens) along the pilgrimage route."
+    },
+    "image": "/map/Am.jpg"
+  },
+  {
+    "name": "Jagannath Temple",
+    "position": [19.8050, 85.8179],
+    "details": {
+      "description": "One of the Char Dham pilgrimage sites, dedicated to Lord Jagannath (a form of Krishna). Famous for its annual Rath Yatra.",
+      "history": "Believed to have been built in the 12th century by King Anantavarman Chodaganga Deva of the Eastern Ganga dynasty. It holds immense historical and spiritual significance.",
+      "architecture": "A classic example of Kalinga architecture with a 65-meter-high spire adorned with intricate carvings. The temple complex is vast, with multiple shrines.",
+      "timings": "Open daily from 5:00 AM to midnight, with specific times for various rituals and darshan.",
+      "bestTimeToVisit": "June and July during the Rath Yatra festival, or October to March when the weather is pleasant.",
+      "nearbyAttractions": "Puri Beach, Konark Sun Temple, Chilika Lake, and Raghurajpur Artist Village are popular nearby attractions.",
+      "howToReach": "Nearest airport: Biju Patnaik International Airport, Bhubaneswar (60 km). Nearest railway station: Puri (2 km). Well-connected by road.",
+      "accommodation": "Pilgrims can stay in dharamshalas, guest houses, and hotels in Puri, ranging from budget to luxury.",
+      "rules": "Non-Hindus are not allowed inside the temple. Photography is prohibited. Visitors should wear modest attire and follow temple guidelines.",
+      "specialFeatures": "The temple kitchen is one of the largest in the world, preparing Mahaprasad for thousands daily. The temple flag mysteriously flows opposite to the wind direction.",
+      "festivals": "The Rath Yatra, Snana Yatra, and Chandan Yatra are celebrated with grandeur, drawing millions of devotees.",
+      "spiritualSignificance": "Believed to be the earthly abode of Lord Jagannath, it holds immense importance for attaining moksha.",
+      "accessibility": "The temple premises have facilities for senior citizens and differently-abled individuals, including wheelchairs and assistance for darshan.",
+      "specialDarshan": "Special entry tickets for darshan and participation in key rituals can be arranged through temple authorities.",
+      "culinaryOfferings": "Mahaprasad, including rice, dal, and sweets, is served as a sacred offering. It is prepared in earthen pots and considered highly auspicious."
+    },
+    "image": "/map/jag.jpg"
+  },
+  {
+    "name": "Kashi Vishwanath",
+    "position": [25.3109, 83.0107],
+    "details": {
+      "description": "One of the twelve Jyotirlingas dedicated to Lord Shiva, located in the ancient city of Varanasi.",
+      "history": "The temple has been destroyed and rebuilt multiple times. The current structure was built in 1780 by Ahilyabai Holkar, with subsequent renovations by Maharaja Ranjit Singh.",
+      "architecture": "The temple features a gold-plated spire and domes, with intricate carvings. The sanctum sanctorum houses the revered Shivalinga.",
+      "timings": "Open daily from 3:00 AM to 11:00 PM, with specific times for mangala aarti and other rituals.",
+      "bestTimeToVisit": "October to March during cooler months, or during festivals like Maha Shivaratri and Dev Deepawali.",
+      "nearbyAttractions": "Ganga Ghats, Dashashwamedh Ghat, Sarnath, and Ramnagar Fort are must-visit places nearby.",
+      "howToReach": "Nearest airport: Lal Bahadur Shastri Airport, Varanasi (26 km). Nearest railway station: Varanasi Junction (6 km). Well-connected by road.",
+      "accommodation": "A variety of options, from budget hotels to luxury accommodations, are available in Varanasi. Dharamshalas cater to pilgrims.",
+      "rules": "Photography is not allowed inside the temple. Devotees should dress modestly and maintain decorum within the premises.",
+      "specialFeatures": "The temple is part of the Kashi Vishwanath Corridor project, enhancing the connection between the temple and Ganga ghats.",
+      "festivals": "Major festivals include Maha Shivaratri, Shravan Maas, and Kartik Purnima, celebrated with great fervor.",
+      "spiritualSignificance": "It is believed that a visit to Kashi Vishwanath grants liberation (moksha) and the blessings of Lord Shiva.",
+      "accessibility": "Facilities like wheelchairs and assistance for senior citizens and differently-abled visitors are available.",
+      "specialDarshan": "Special pooja and aarti tickets can be booked in advance for a closer and more spiritual experience.",
+      "culinaryOfferings": "The temple provides prasad in the form of sweets and dry fruits, which can be purchased from authorized counters."
+    },
+    "image": "/map/kashi.jpg"
+  },
+  
+  {
+    "name": "Kedarnath Temple",
+    "position": [30.7346, 79.0669],
+    "details": {
+      "description": "One of the twelve Jyotirlingas dedicated to Lord Shiva, located at an altitude of 11,755 feet in the Himalayas.",
+      "history": "Believed to have been built by the Pandavas and later restored by Adi Shankaracharya in the 8th century. It survived the devastating 2013 floods.",
+      "architecture": "An engineering marvel, built with interlocking stones without mortar. The sanctum houses the revered Shivalinga.",
+      "timings": "Open from April/May to October/November, depending on the Hindu calendar and weather conditions.",
+      "bestTimeToVisit": "May to June and September to October, avoiding the monsoon season.",
+      "nearbyAttractions": "Gandhi Sarovar, Vasuki Tal, and Bhairavnath Temple.",
+      "howToReach": "Nearest airport: Jolly Grant Airport, Dehradun (250 km). Nearest railway station: Rishikesh (229 km). Requires a trek from Gaurikund (16 km).",
+      "accommodation": "Limited guest houses and dharamshalas are available in Kedarnath. Options in Gaurikund are more varied.",
+      "rules": "Photography is not allowed inside the temple. Visitors should respect the sanctity of the place.",
+      "specialFeatures": "It is the highest Jyotirlinga, offering a unique spiritual and scenic experience.",
+      "festivals": "Major festivals include Maha Shivaratri and the opening and closing ceremonies of the temple.",
+      "spiritualSignificance": "Visiting Kedarnath is believed to cleanse one’s sins and bring blessings of Lord Shiva.",
+      "accessibility": "A pony, palki, and helicopter services are available for those unable to trek.",
+      "specialDarshan": "Special pooja and aarti tickets can be arranged in advance.",
+      "culinaryOfferings": "Prasad in the form of sweets and dry fruits is available at authorized counters."
+    },
+    "image": "/map/kedarnath.jpg"
+  },
+  {
+    "name": "Somnath Temple",
+    "position": [20.8880, 70.4010],
+    "details": {
+      "description": "The first among the twelve Jyotirlingas dedicated to Lord Shiva, located on the western coast of India.",
+      "history": "The temple has been destroyed and rebuilt several times, with the current structure completed in 1951.",
+      "architecture": "The temple features a 15-story Shikhar and a unique coastal location enhancing its grandeur.",
+      "timings": "Open daily from 6:00 AM to 9:00 PM, with aarti performed thrice a day.",
+      "bestTimeToVisit": "October to February during cooler months, or during Maha Shivaratri and Kartik Purnima festivals.",
+      "nearbyAttractions": "Triveni Sangam, Bhalka Tirtha, and Prabhas Patan Museum.",
+      "howToReach": "Nearest airport: Diu Airport (65 km). Nearest railway station: Veraval (7 km). Well-connected by road.",
+      "accommodation": "Several hotels, guest houses, and dharamshalas are available in Somnath and Veraval.",
+      "rules": "Photography and videography are prohibited within the temple premises.",
+      "specialFeatures": "The temple produces a continuous wave sound effect due to its unique coastal location.",
+      "festivals": "Major festivals include Maha Shivaratri and Kartik Purnima, celebrated with grandeur.",
+      "spiritualSignificance": "Believed to be a place where Lord Krishna ended his earthly journey.",
+      "accessibility": "Wheelchair facilities and assistance for senior citizens are available.",
+      "specialDarshan": "Special aarti tickets and pooja services can be booked for a closer experience.",
+      "culinaryOfferings": "Prasad is available at the temple complex for devotees."
+    },
+    "image": "/map/somanat.jpg"
+  },
+  {
+    "name": "Shirdi Sai Baba Temple",
+    "position": [19.7645, 74.4762],
+    "details": {
+      "description": "A prominent shrine dedicated to Sai Baba, visited by millions every year.",
+      "history": "Built around Sai Baba’s samadhi, the temple complex also houses the Dhuni (eternal flame) maintained since Sai Baba’s time.",
+      "architecture": "Constructed using stones from Vrindavan, with a serene and spiritual ambiance.",
+      "timings": "Open daily from 4:00 AM to 11:30 PM, with specific timings for aarti and darshan.",
+      "bestTimeToVisit": "October to March for pleasant weather, or during festivals like Ramnavami and Guru Purnima.",
+      "nearbyAttractions": "Dixit Wada Museum, Khandoba Temple, and Wet N Joy Water Park.",
+      "howToReach": "Nearest airport: Shirdi Airport (15 km). Nearest railway station: Sainagar Shirdi (3 km). Well-connected by road.",
+      "accommodation": "A range of accommodations, including Sai Ashrams and budget hotels, cater to devotees.",
+      "rules": "Photography is not allowed inside the temple. Devotees should maintain decorum.",
+      "specialFeatures": "The temple serves free meals to over 40,000 people daily at the Prasadalaya.",
+      "festivals": "Key festivals include Ramnavami, Guru Purnima, and Vijaya Dashami, celebrated with special programs.",
+      "spiritualSignificance": "Believed to be a place of blessings and miracles through Sai Baba’s teachings.",
+      "accessibility": "Wheelchairs and assistance for senior citizens are provided.",
+      "specialDarshan": "Special aarti tickets can be booked for a more immersive spiritual experience.",
+      "culinaryOfferings": "Prasad and free meals are offered to all visitors."
+    },
+    "image": "/map/shiradi.jpg"
+  },
+  {
+    "name": "Ajmer Sharif Dargah",
+    "position": [26.4519, 74.6289],
+    "details": {
+      "description": "The Sufi shrine of Khwaja Moinuddin Chishti, a place of universal faith and devotion.",
+      "history": "Established in the 13th century, the shrine has been a center of spirituality and communal harmony.",
+      "architecture": "Features exquisite Mughal-style architecture with intricately carved domes and a silver gate.",
+      "timings": "Open daily from 5:00 AM to 9:00 PM, with special timings during Urs.",
+      "bestTimeToVisit": "October to March for pleasant weather, or during the annual Urs festival.",
+      "nearbyAttractions": "Ana Sagar Lake, Adhai Din Ka Jhopra, and Taragarh Fort.",
+      "howToReach": "Nearest airport: Jaipur Airport (135 km). Nearest railway station: Ajmer Junction (2 km). Well-connected by road.",
+      "accommodation": "Numerous hotels, guest houses, and lodges cater to all budgets in Ajmer.",
+      "rules": "Modest attire is required. Visitors must remove shoes before entering the shrine.",
+      "specialFeatures": "The dargah houses two massive cauldrons used for cooking sacred food.",
+      "festivals": "The annual Urs of Khwaja Moinuddin Chishti is celebrated with fervor and Qawwali performances.",
+      "spiritualSignificance": "Considered a place where prayers are answered and blessings are received.",
+      "accessibility": "Wheelchairs and assistance for elderly visitors are available.",
+      "specialDarshan": "Arrangements can be made for special prayers and offerings.",
+      "culinaryOfferings": "Sacred food is served to devotees, especially during the Urs."
+    },
+    "image": "/map/ajmir.jpg"
+  },
+
+   {
+    "name": "Dakshineswar Kali Temple",
+    "position": [22.6575, 88.3674],
+    "details": {
+      "description": "A revered Hindu temple dedicated to Goddess Kali, symbolizing devotion and spiritual awakening.",
+      "history": "Built in 1855 by Rani Rashmoni, closely associated with Sri Ramakrishna Paramahamsa's spiritual journey.",
+      "architecture": "The temple features traditional Bengali architecture with a nine-spired main temple and 12 identical Shiva temples.",
+      "timings": "Open daily from 6:00 AM to 9:00 PM, with specific rituals performed throughout the day.",
+      "bestTimeToVisit": "October to March for comfortable weather and festive celebrations.",
+      "nearbyAttractions": "Belur Math, Vivekananda Setu, and Adyapeath Temple.",
+      "howToReach": "Nearest airport: Netaji Subhas Chandra Bose International Airport (15 km). Nearest railway station: Dakshineswar Railway Station (1 km). Well-connected by road.",
+      "accommodation": "Several hotels and guesthouses available in Kolkata and nearby areas.",
+      "rules": "Modest attire is required. Visitors must maintain silence and decorum within the temple premises.",
+      "specialFeatures": "The temple houses a sacred idol of Bhavatarini Kali and hosts unique tantric rituals.",
+      "festivals": "Kali Puja and Durga Puja are celebrated with grandeur.",
+      "spiritualSignificance": "A hub for spiritual seekers, the temple inspires devotion and inner peace.",
+      "accessibility": "Wheelchair access is available along with assistance for elderly visitors.",
+      "specialDarshan": "Special arrangements can be made for darshan during peak festivals.",
+      "culinaryOfferings": "Sacred prasad is distributed to devotees after rituals."
+    },
+    "image": "/map/kali.jpg"
+  },
+  {
+    "name": "Sabarimala Temple",
+    "position": [9.4323, 77.0824],
+    "details": {
+      "description": "A renowned temple dedicated to Lord Ayyappa, nestled in the serene Western Ghats.",
+      "history": "Believed to have origins in ancient mythology, the temple has been a site of pilgrimage for centuries.",
+      "architecture": "Traditional Kerala-style architecture with 18 sacred steps symbolizing human passions.",
+      "timings": "Open during Mandalam season (November-January) and other festive periods.",
+      "bestTimeToVisit": "November to January during the pilgrimage season for a spiritual experience.",
+      "nearbyAttractions": "Periyar Tiger Reserve, Pampa River, and Nilakkal Mahadeva Temple.",
+      "howToReach": "Nearest airport: Cochin International Airport (160 km). Nearest railway station: Kottayam Railway Station (93 km). Accessible by road via Pampa base camp.",
+      "accommodation": "Pilgrims' accommodations are available at Pampa and Nilakkal.",
+      "rules": "Strict penance and celibacy are observed for 41 days before the pilgrimage. Only men and women above 10 years are allowed.",
+      "specialFeatures": "The temple's unique rituals include a challenging trek through dense forests.",
+      "festivals": "The Makara Jyothi festival attracts millions of devotees annually.",
+      "spiritualSignificance": "Believed to offer liberation and blessings to sincere devotees.",
+      "accessibility": "Basic facilities available for differently-abled pilgrims at base camps.",
+      "specialDarshan": "Priority darshan can be arranged for elderly or differently-abled devotees.",
+      "culinaryOfferings": "Sacred offerings like Aravana Payasam are distributed to devotees."
+    },
+    "image": "/map/shabari.jpg"
+  },
+  {
+    "name": "Hemkund Sahib",
+    "position": [30.7016, 79.6152],
+    "details": {
+      "description": "A revered Sikh Gurudwara nestled at a breathtaking altitude in the Himalayas.",
+      "history": "Mentioned in the Dasam Granth by Guru Gobind Singh, it holds deep historical and spiritual significance.",
+      "architecture": "Star-shaped structure with modern elements, surrounded by seven snow-capped peaks.",
+      "timings": "Open only from May to October due to extreme weather conditions.",
+      "bestTimeToVisit": "May to June or September to October for pleasant trekking weather.",
+      "nearbyAttractions": "Valley of Flowers, Badrinath Temple, and Mana Village.",
+      "howToReach": "Nearest airport: Jolly Grant Airport, Dehradun (292 km). Nearest railway station: Rishikesh (273 km). Trek starts from Govindghat.",
+      "accommodation": "Simple lodges and Gurudwara accommodations available at Govindghat and Ghangaria.",
+      "rules": "Visitors are expected to follow Sikh traditions and maintain cleanliness.",
+      "specialFeatures": "The Gurudwara is located by a serene glacial lake, offering a tranquil atmosphere.",
+      "festivals": "Special prayers and kirtans are held during significant Sikh festivals.",
+      "spiritualSignificance": "A place for self-reflection and divine connection amidst nature.",
+      "accessibility": "Challenging trek requires fitness; ponies and porters are available.",
+      "specialDarshan": "Special prayers can be arranged on request.",
+      "culinaryOfferings": "Langar (community meals) is served to all visitors."
+    },
+    "image": "/map/hema.jpeg"
+  }
+];
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const map = L.map('map').setView([20.5937, 78.9629], 5);
+    const detailsPanel = document.getElementById('details');
+    const detailsTitle = document.getElementById('details-title');
+    const detailsContent = document.getElementById('details-content');
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = '×';
+    closeButton.className = 'absolute top-4 right-4 text-2xl text-gray-400 hover:text-gray-200';
+    closeButton.onclick = () => {
+      detailsPanel.classList.add('hidden');
+      map.invalidateSize();
+    };
+    detailsPanel.appendChild(closeButton);
+
+    destinations.forEach(dest => {
+      const marker = L.marker(dest.position)
+        .addTo(map)
+        .on('click', () => {
+          detailsPanel.classList.remove('hidden');
+          detailsTitle.textContent = dest.name;
+          
+          const detailsHTML = Object.entries(dest.details).map(([key, value]) => `
+            <div class="details-section bg-gray-800 rounded-lg p-4">
+              <h3 class="text-gray-200 font-semibold mb-2 capitalize">${key}</h3>
+              <p class="text-gray-300">${value}</p>
+            </div>
+          `).join('');
+
+          detailsContent.innerHTML = `
+            <div class="mb-6 rounded-lg overflow-hidden">
+              <img src="${dest.image}" alt="${dest.name}" class="w-full h-64 object-cover">
+            </div>
+            <div class="space-y-4">
+              ${detailsHTML}
+            </div>
+            <div class="mt-4 text-sm text-gray-400 border-t border-gray-700 pt-4">
+              <p>Location: ${dest.position[0]}°N, ${dest.position[1]}°E</p>
+            </div>
+          `;
+          
+          map.invalidateSize();
+        });
+    });
+  });
+</script>
+
+<style>
+  @import 'leaflet/dist/leaflet.css';
+  
+  #details {
+    border-left: 1px solid #2d3748;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .details-section {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  :global(.leaflet-popup-content-wrapper) {
+   background: #1a202c;
+   color: #e2e8f0;
+   font-family: 'Roboto';
+}
+  :global(.leaflet-popup-tip) {
+    background: #1a202c;
+  }
+
+  :global(.leaflet-container) {
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+</style>
