@@ -5,41 +5,256 @@ import Layout from "../../layouts/Layout.astro";
 
 <Layout>
     <section
-        class="flex flex-col relative min-h-screen m-4 mt-16 gap-8 items-center p-4"
+        class="flex flex-col relative min-h-screen m-4 mt-16 gap-8 items-center p-4 bg-black text-white"
     >
-        <h1 class="pt-24 text-5xl text-vyoma-blue">RC Model Airplanes</h1>
+        <h1 class="pt-24 text-6xl font-bold text-vyoma-blue">Chardham Pilgrimage Tour</h1>
 
         <div
-            class="flex flex-row items-center flex-wrap gap-5 max-w-screen-lg justify-center w-full"
+            class="flex flex-row items-center flex-wrap gap-5 max-w-screen-lg justify-center w-full mt-8"
         >
-            <img class="rounded max-h-80 object-fit" src="/images/model1.jpg" />
-            <img class="rounded max-h-80 object-fit" src="/images/model2.jpg" />
+            <img
+                class="rounded-lg max-h-80 object-cover shadow-lg hover:scale-105 transition-transform duration-300"
+                src="/cards/kedarnath.jpg"
+            />
+            
         </div>
-
-        <div
-            class="flex flex-col gap-4 text-left max-w-screen-lg w-full text-white"
+         <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 rounded-lg shadow-lg"
         >
-            <div class="flex flex-col">
-                <p class="text-lg">
-                    Team Vyoma is primarily involved in building RC airplanes.
-                    We have built several models and have flown them
-                    successfully. We have also participated in various
-                    competitions and have won prizes.
+            <div class="flex flex-col gap-4">
+                <p class="text-lg leading-relaxed">
+                    <span class="text-vyoma-blue font-semibold">Char Dham Pilgrimage Tour</span> is one of the most sacred journeys to fulfill transcendent quests in life. The journey will take you to the abode of Lord Shiva, Lord Vishnu, Goddess Yamuna, and Goddess Ganga. Situated in the lap of the Himalayas and dipped in ethereal vibes, the four Char Dhams - Badrinath, Kedarnath, Gangotri, and Yamunotri - will anchor your spiritual boat in these mystical realms.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    The purpose of the Char Dham Yatra is to free oneself from the karmic backlogs of life. It is said that one must undertake this pilgrimage at least once in a lifetime to achieve salvation and eternal peace. Coined by the saint Adi Shankaracharya, the term ‘holy Char Dham’ means the ‘four abodes of god.’ After the yatra, one finds divine calmness and serenity of mind.
                 </p>
             </div>
 
-            <div class="flex flex-col">
-                <h3 class="text-vyoma-blue text-2xl">
-                    Boeing IIT: National Aeromodelling Competition
-                </h3>
-                <p class="text-lg">
-                    We secured a position in the top 20 out of 600 competing
-                    teams, in
-                    Round 2 of the Boeing National Aeromodelling Competition.
-                    This achievement stands as a testament to our dedication,
-                    teamwork, and relentless pursuit of excellence.
+            <div class="flex flex-col gap-2">
+                <h3 class="text-3xl font-bold text-vyoma-blue">Opening Dates of Char Dham Yatra 2025</h3>
+                <ul class="list-disc list-inside text-lg">
+                    <li>Yamunotri Temple Opening Date: <span class="font-semibold">30 April 2025</span></li>
+                    <li>Gangotri Temple Opening Date: <span class="font-semibold">30 April 2025</span></li>
+                    <li>Kedarnath Temple Opening Date: <span class="font-semibold">02 May 2025</span></li>
+                    <li>Badrinath Temple Opening Date: <span class="font-semibold">02 May 2025</span></li>
+                </ul>
+            </div>
+
+            <div class="flex flex-col gap-4">
+                <h3 class="text-3xl font-bold text-vyoma-blue">Visual Delights of Char Dham Pilgrimage Tour Package 2025</h3>
+                <p class="text-lg leading-relaxed">
+                    The holy Char Dham Yatra starts in Delhi and takes you to Rishikesh, the Yoga capital of India, with its serene temples and evening Ganga Aarti. The journey includes stops at Barkot, Yamunotri, Gangotri, Kedarnath, and Badrinath, offering breathtaking views, divine aartis, and soul-enriching experiences.
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-4">
+                <h3 class="text-3xl font-bold text-vyoma-blue">Customizable Char Dham Yatra Tour Package 2025</h3>
+                <p class="text-lg leading-relaxed">
+                    Enjoy the flexibility of customizing your Char Dham Yatra tour package with us. Choose your facilities, arrangements, and pay only for what you select. We ensure a seamless experience with comfortable stays, expert guides, and well-planned itineraries.
+                </p>
+            </div>
+
+        <!-- Day 1 -->
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-white rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    1
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 1: Delhi to Rishikesh</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    Morning drive to Rishikesh (approx. 230 km / 6 hours). Enjoy en-route lunch. On arrival, check in at the hotel. Spend the afternoon sightseeing at Ram Jhula, Laxman Jhula, and Swarga Ashram. In the evening, experience the enchanting Ganga Aarti. Overnight stay at Rishikesh.
                 </p>
             </div>
         </div>
+
+        <!-- Day 2 -->
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-white rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    2
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 2: Rishikesh to Barkot</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    Morning after breakfast, drive to Barkot (approx. 200 km / 7 hours). En route, visit Kempty Falls in Mussoorie. On arrival, check in at the hotel. Overnight stay at Barkot.
+                </p>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-white rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    3
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 3: Barkot - Yamunotri - Barkot</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    Early breakfast and drive to Janki Chatti. Trek to Yamunotri (7 km) by walk, horse, or doli. At Yamunotri, take a bath in Jamnabai Kund, and dip raw rice or potato in Surya Kund to use as Prasad. Witness Aarti at Divya Shila and Yamunaji Temple. Return to Barkot for an overnight stay.
+                </p>
+            </div>
+            <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    4
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 4: Uttarkashi to Gangotri and Back</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    After early breakfast, drive to Gangotri located at an altitude of 3048 meters and surrounded by snow-capped Himalayan peaks. Offer prayers at the Gangotri temple and explore the area. Don’t miss the submerged Shivling of natural rock. Later, drive back to Uttarkashi for an overnight stay.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    5
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 5: Uttarkashi to Guptkashi</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    After an early breakfast, drive to Guptkashi covering approx. 210 km in 7 hrs. On arrival, check in at the hotel. Overnight stay at the hotel.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    6
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 6: Guptkashi to Kedarnath</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    In the morning, leave for Gaurikund. From there, begin the trek to Kedarnath, located at an altitude of 3584 meters. Cover a distance of 45 km by road and 14 km by trekking. Ponies or Dolis are available for hire. Visit the Kedarnath temple, one of the twelve Jyotirlingas of Lord Shiva. Overnight stay at Kedarnath.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    7
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 7: Kedarnath to Pipalkoti</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    After an early morning visit to the Kedarnath temple, return to Gaurikund (14 km trek) and drive to Pipalkoti, covering approx. 158 km in 5 hrs. Overnight stay at Pipalkoti.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    8
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 8: Pipalkoti to Badrinath</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    After breakfast, proceed to Badrinath via Joshimath, covering 77 km in 3 hrs. On arrival, check in at the hotel and enjoy the evening Aarti at the Badrinath temple. Overnight stay at Badrinath.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    9
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 9: Badrinath to Srinagar</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    Early morning, take a holy bath at Tapt Kund and visit Badrivishal temple. Explore other holy sites like Mana, Vyas Cave, and Bhimkund. Later, proceed to Srinagar (7 hrs journey). Overnight stay at Srinagar.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    10
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 10: Srinagar to Haridwar</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    In the morning, after breakfast, drive to Haridwar (156 km / 4 hrs). On arrival, check in at the hotel. Enjoy an afternoon sightseeing tour, including Mansa Devi and Chandi Devi temples. In the evening, witness the enchanting Ganga Aarti. Overnight stay at Haridwar.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col gap-6 text-left max-w-screen-lg w-full p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg"
+        >
+            <div class="flex items-center gap-4">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-full bg-vyoma-blue text-white text-lg font-bold"
+                >
+                    11
+                </div>
+                <h3 class="text-2xl font-bold text-vyoma-blue">Day 11: Haridwar to Delhi</h3>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-md bg-gray-900 shadow-md">
+                <p class="text-lg leading-relaxed">
+                    After breakfast, drive back to Delhi. End of the pilgrimage tour.
+                </p>
+            </div>
+        
+        </div>
+
+        <!-- Repeat similar structure for Day 4 onwards -->
+
     </section>
 </Layout>
