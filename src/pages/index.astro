@@ -1,130 +1,26 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout>
-  <section
-    id="home"
-    class="relative flex flex-col flex-wrap justify-center items-center text-center overflow-hidden py-4 min-h-screen w-full text-white home"
-  >
-    <div class="two-images relative max-sm:max-w-sm sm:max-w-screen-sm h-auto">
-      <img
-        class="relative top-0 left-0 w-auto h-auto"
-        src="/images/white_logo.png"
-        alt="White Logo"
-      />
-      <img
-        class="absolute top-0 left-0 w-full h-full superimposed"
-        src="/images/image.png"
-        alt="Logo"
-      />
-    </div>
-    <h2 class="text-3xl drop-shadow-md">
-      Your one-stop destination for spiritual journeys and sacred experiences
-    </h2>
-  </section>
+    <section class="flex flex-col relative min-h-screen m-4 mt-16 gap-16 items-center p-4">
+        <h1 class="pt-24 text-5xl text-vyoma-blue">Packages</h1>
 
-  <div class="h-32 wave"></div>
-  <div class="h-32 wave wave2"></div>
-  <div class="h-32 wave wave3"></div>
+        <div class="flex flex-col gap-16">
+            <ProjectCard name="Chardham Pilgrimage Tour" image="/cards/kedarnath.jpg" slug="model">
+                <p>The Chardham Pilgrimage Tour covers the sacred shrines of Yamunotri, Gangotri, Kedarnath, and Badrinath in the Himalayas. It is a spiritual journey that offers breathtaking views, devotion, and peace, drawing millions seeking salvation and enlightenment amidst nature's serene beauty and ancient temples' divine aura.</p>
+            </ProjectCard>
 
-  <div class="pt-5 pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="section-head col-sm-12" id="service">
-          <h1 class="mt-32">Our Mission</h1>
-<p>
-  Our mission is to help you discover serene spiritual destinations, guided tours, and authentic experiences that will deepen your faith and enrich your spiritual journey.
-</p>
-<a
-  class="text-[#406E9F] hover:text-vyoma-blue hover:no-underline text-2xl"
-  href="/about"
->
-  Discover More About Our Offerings
-</a>
+            <ProjectCard name="Dwadash (12) Jyotirlinga Temples Tour" image="/cards/jyotirlinga.webp" slug="vtol" reversed>
+                <p>Jyotirlinga is considered as one of the prime worship spots for the devoters of Lord Shiva. It is believed in Hinduism that jyotirlinga is the resplendent flame of the almighty solidified to make the worship of it simple</p>
+
+            </ProjectCard>
+
+            <ProjectCard name="Kedarnath Badrinath Yatra" image="/cards/badrinath.jpg" slug="launcher">
+                <p>Char Dhams in Hinduism hold great importance. Every Hindu devotee dream of visiting the holy Char Dhams to fulfill the spiritual quest of attaining salvation. It is said that glimpses of any one of the Char Dhams remove the sins of one’s life. Of all the major Char Dham shrines, two shrines play a very integral part in fulfilling the pious quest of attaining Moksha. Lord Vishnu (the preserver of earth) and Lord Shiva (the destroyer of earth) are two of three most revered Lords in Hinduism. Offering prayers to these two Gods holds high significance in this religion..</p>
+
+            </ProjectCard>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="h-10 text-center items-center bg-[url(../images/newbg2.jpg)] bg-no-repeat bg-contain md:bg-cover bg-fixed bg-center w-full text-white min-h-[35vh] px-5 py-10"
-  ></div>
-
-  <section id="contact" class="contact">
-    <h1 class="heading">We'd Love to Hear from You! Get in Touch</h1>
-  </section>
-
-  <div class="contact-in">
-    <div class="contact-map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15567.912881370632!2d77.45077965157242!3d12.889661394479894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3ee159ba3729%3A0x75a3463d510cf26e!2sR.%20V.%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1689627383432!5m2!1sen!2sin"
-        width="100%"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-      ></iframe>
-    </div>
-
-    <form id="contact-form" class="contact-form">
-      <input
-        type="text"
-        id="name"
-        placeholder="Name"
-        class="contact-form-txt"
-        required
-        name="from_name"
-      />
-      <input
-        type="tel"
-        id="phone"
-        pattern="[0-9]{10}"
-        required
-        placeholder="Contact number"
-        maxlength="10"
-        class="contact-form-phone"
-        name="contact"
-      />
-      <input
-        type="email"
-        id="email"
-        placeholder="Email"
-        class="contact-form-email"
-        required
-        name="email_id"
-      />
-      <textarea
-        placeholder="Your Message"
-        name="message"
-        class="contact-form-txtarea"
-        required
-      ></textarea>
-      <input
-        type="submit"
-        value="Submit"
-        name="submit"
-        class="contact-form-btn"
-      />
-    </form>
-  </div>
-
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    emailjs.init('vZCxqvwZ1AXGnk8TU');
-
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const formData = new FormData(this);
-
-      emailjs.sendForm('service_oztzcpq', 'template_m0c0t8n', this)
-        .then(function(response) {
-          alert('Message sent successfully!');
-          document.getElementById('contact-form').reset();
-        }, function(error) {
-          alert('Error sending message: ' + JSON.stringify(error));
-        });
-    });
-  </script>
+    </section>
 </Layout>
