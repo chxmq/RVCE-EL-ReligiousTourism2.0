@@ -1,19 +1,26 @@
 ---
-const { heading, src } = Astro.props;
+const { heading, src, link } = Astro.props;
 ---
 
 <div class="col-lg-4 col-sm-6 my-2">
     <div class="item">
-        <div class="flex justify-center h-40"><img
-            style="width: 250px"
-            src={src}
-            alt={heading}
-        /></div>
-
+        <div class="flex justify-center h-40">
+            <img
+                style="width: 250px"
+                src={src}
+                alt={heading}
+            />
+        </div>
         <h6 class="text-2xl text-vyoma-blue my-3">{heading}</h6>
-
         <p class="flex-1 text-base text-white text-left">
             <slot />
         </p>
+        <a
+            href={link}
+            target="_blank"
+            class="mt-3 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+        >
+            Click here to Learn More
+        </a>
     </div>
 </div>
