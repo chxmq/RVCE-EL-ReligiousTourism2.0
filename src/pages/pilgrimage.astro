@@ -6,23 +6,24 @@ import { achievements } from "../lib/pilgrimage";
 
 <Layout>
     <section class="min-h-screen pt-5 pb-5 mt-16">
-		<div class="container">
-			<div class="row flex flex-col justify-center items-center">
+        <div class="container">
+            <div class="row flex flex-col justify-center items-center">
                 <h1 class="pt-10 text-5xl text-vyoma-blue">Popular Pilgrimage Destinations of India</h1>
 
-				<div class="flex flex-wrap mt-5">
+                <div class="flex flex-wrap mt-5">
                     {
                         achievements.map((achievement) => (
                             <Achievement
                                 src={achievement.src}
                                 heading={achievement.heading}
+                                link={achievement.link}
                             >
                                 {achievement.description}
                             </Achievement>
                         ))
                     }
                 </div>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </section>
 </Layout>
